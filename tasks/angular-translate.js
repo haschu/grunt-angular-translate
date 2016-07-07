@@ -57,16 +57,7 @@ module.exports = function (grunt) {
       regex.lastIndex = 0;
       while ((r = regex.exec(content)) !== null) {
 
-        // Check for translateNamespace directive
-        var namespaceRegex = new RegExp('translate-namespace="((?:\\\\.|[^"\\\\])*)"', "gi"),
-          namespaceRegexResult = namespaceRegex.exec(content);
 
-        if ( namespaceRegexResult !== null ) {
-          var namespaceInnerRegex = new RegExp('translate-namespace="' + namespaceRegexResult[1] + '"([\\s\\S]*?)<!-- @@translate-namespace-end="' + namespaceRegexResult[1] + '" -->', "gmi");
-          if ( namespaceInnerRegex.test( content ) ) {
-            r[1] = namespaceRegexResult[1] + r[1];
-          }
-        }
 
         // Result expected [STRING, KEY, SOME_REGEX_STUF]
         // Except for plural hack [STRING, KEY, ARRAY_IN_STRING]
